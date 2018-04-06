@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Advanced GitHub Notifications",
+  "version": "0.0.1",
+  "description": "Skill up your GitHub notifications and stop using messy email filters",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/notifications",
+        "https://github.com/notifications/participating",
+        "https://github.com/*/*/notifications"
+      ],
+      "js": ["content_script.js"]
+    }
+  ],
+  "permissions": [
+    "https://api.github.com/*",
+    "webRequest"
+  ],
+  "applications": {
+    "gecko": {
+      "id": "{61d99d93-88ca-40d0-85c7-87f0a4204d20}"
+    }
+  }
+}

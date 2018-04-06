@@ -1,0 +1,20 @@
+{
+  "name": "github-notifications-addon",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devsnek/github-notifications-addon.git"
+  },
+  "author": "devsnek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devsnek/github-notifications-addon/issues"
+  },
+  "homepage": "https://github.com/devsnek/github-notifications-addon#readme",
+  "devDependencies": {
+    "web-ext": "^2.6.0"
+  }
+}
