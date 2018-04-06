@@ -1,7 +1,5 @@
 'use strict';
 
-/* eslint-env browser */
-
 const tokenPromise = browser.storage.local.get('GITHUB_ADDON_TOKEN')
   .then(({ GITHUB_ADDON_TOKEN }) => GITHUB_ADDON_TOKEN);
 
@@ -70,10 +68,8 @@ const handled = new WeakSet();
 
 function run() {
   get('https://api.github.com/notifications').then((notifications) => {
-    if (!Array.isArray(notifications)) {
-      console.log(notifications)
+    if (!Array.isArray(notifications))
       return;
-    }
     const ns = Array.from(document.querySelectorAll('.js-notification'))
       .map((element) => {
         const text = element.textContent.split('\n').map((t) => t.trim()).filter(Boolean)[0];
