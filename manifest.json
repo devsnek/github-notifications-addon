@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Advanced GitHub Notifications",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Skill up your GitHub notifications and stop using messy email filters",
   "content_scripts": [
     {
