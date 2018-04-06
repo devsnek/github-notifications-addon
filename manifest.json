@@ -15,8 +15,12 @@
   ],
   "permissions": [
     "https://api.github.com/*",
-    "webRequest"
+    "webRequest",
+    "storage"
   ],
+  "options_ui": {
+    "page": "options.html"
+  },
   "applications": {
     "gecko": {
       "id": "{61d99d93-88ca-40d0-85c7-87f0a4204d20}"

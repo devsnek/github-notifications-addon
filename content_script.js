@@ -2,14 +2,18 @@
 
 /* eslint-env browser */
 
-const TOKEN = 'fa617afb100888ee89168b3efd45954085922f8e';
+const tokenPromise = browser.storage.local.get('GITHUB_ADDON_TOKEN')
+  .then(({ GITHUB_ADDON_TOKEN }) => GITHUB_ADDON_TOKEN);
 
-const get = (url) =>
-  window.fetch(url, {
+const get = async (url) => {
+  const token = await tokenPromise;
+  const req = await window.fetch(url, {
     headers: {
-      Authorization: `token ${TOKEN}`,
+      Authorization: `token ${token}`,
     },
-  }).then((r) => r.json());
+  });
+  return req.json();
+};
 
 // http://www.w3.org/TR/AERT#color-contrast
 const getTextColor = (hex) => {
@@ -43,7 +47,6 @@ const COLORS = {
   blue: '#84b6eb',
 };
 
-
 // <span class="label label-color" style="background-color:#7057ff; color:#ffffff">good first issue</span>
 const label = (text, color = COLORS.blue) => {
   const l = document.createElement('span');
@@ -67,6 +70,10 @@ const handled = new WeakSet();
 
 function run() {
   get('https://api.github.com/notifications').then((notifications) => {
+    if (!Array.isArray(notifications)) {
+      console.log(notifications)
+      return;
+    }
     const ns = Array.from(document.querySelectorAll('.js-notification'))
       .map((element) => {
         const text = element.textContent.split('\n').map((t) => t.trim()).filter(Boolean)[0];
