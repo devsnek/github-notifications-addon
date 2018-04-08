@@ -86,12 +86,18 @@ function run() {
       handled.add(element);
       const target = element.querySelector('.list-group-item-name');
       const checkUnread = element.querySelector('button[type=submit]');
+      const checkUnreadAll = element.parentElement.parentElement.querySelector('button');
       const labels = new Set();
 
-      checkUnread.addEventListener('click', () => {
-        for (const l of labels)
+      const removeLabels = () => {
+        for (const l of labels) {
           l.remove();
-      });
+          labels.delete(l);
+        }
+      };
+
+      checkUnread.addEventListener('click', removeLabels);
+      checkUnreadAll.addEventListener('click', removeLabels);
 
       const [text, color] = REASONS[notification.reason];
       if (text) {
